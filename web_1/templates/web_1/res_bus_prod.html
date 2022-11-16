@@ -1,0 +1,21 @@
+{% extends 'web_1/base.html' %} 
+
+{% block contenido %} 
+{% csrf_token%}
+<ul>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+        </tr>
+        <tr>
+            {% for producto in productos %}
+            <td>{{producto.nombre}}</td>
+            <td>${{producto.precio}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</ul>
+{% endblock %} 

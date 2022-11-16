@@ -19,7 +19,7 @@ def carga_productos(request):
             
             info_producto=formulario.cleaned_data
 
-            producto = Productos(sku=info_producto["sku"], nombre=info_producto["sku"], precio=info_producto["precio"], stock=info_producto["stock"])
+            producto = Productos(sku=info_producto["sku"], nombre=info_producto["nombre"], precio=info_producto["precio"], stock=info_producto["stock"])
 
             producto.save()
 
@@ -33,6 +33,7 @@ def carga_productos(request):
 
 
 def carga_usuarios(request):
+    
     if request.method == "POST":
         
         formulario  = Usuario_formulario(request.POST)
@@ -53,7 +54,9 @@ def carga_usuarios(request):
     
     return render(request, r"web_1\usuario_formulario.html", contexto)
 
+
 def carga_empresas(request):
+    
     if request.method == "POST":
         
         formulario  = Vendedores_formulario(request.POST)
@@ -73,3 +76,19 @@ def carga_empresas(request):
     contexto = {"formulario":formulario}
     
     return render(request, r"web_1\vendedores_formularios.html", contexto)
+
+
+    #Búsqueda de datos en la BD
+
+
+def busqueda_producto(request):
+
+    return render(request, r"web_1/busqueda_productos.html")
+
+def resultado_busqueda_producto(request):
+    
+    nombre_producto = request.POST["nombre_producto"]
+
+    productos = Productos.objects.filter(nombre__icontains=nombre_producto)
+
+    return render(request, r"web_1/res_bus_prod.html", {"productos": productos})

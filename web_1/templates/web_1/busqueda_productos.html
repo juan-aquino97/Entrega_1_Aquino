@@ -1,0 +1,11 @@
+{% extends 'web_1/base.html' %} 
+
+{% block contenido %} 
+<form action="{% url 'web-1-producto-resultado-busqueda' %}" method="POST">
+    {% csrf_token%}
+    <p>
+        Producto: <input type="text" name ="nombre_producto">
+        <input type="submit" value="Buscar!">
+    </p>
+</form>
+{% endblock %} 

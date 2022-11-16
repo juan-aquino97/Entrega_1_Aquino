@@ -11,7 +11,7 @@ class Usuario(models.Model):
 class Productos(models.Model):
     sku = models.IntegerField()
     nombre = models.CharField(max_length=50)
-    precio = models.DecimalField(max_digits=10, decimal_places=9)
+    precio = models.FloatField()
     stock = models.IntegerField()
 
 class Vendedores(models.Model):
